@@ -50,6 +50,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "demo": "vite --config demo/vite.config.ts",
+    "demo:build": "vite build --config demo/vite.config.ts",
     "changeset": "changeset",
     "release": "npm run build && changeset publish",
     "prepare": "husky"
@@ -73,6 +75,7 @@
     "tsup": "^9.0.0",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5",
     "vitest": "^5.0.5"
   }
 }
