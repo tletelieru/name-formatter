@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - Add the Catalan conjunction `i` as a particle, so `Puig i Cadafalch` stays one surname and `i` stays lowercase in `capitalizeName`.
+- In given names, a particle and its word always join the previous name, even when the compound is not in the dictionary: `Ana de Jesús Soto Rojas` gives first name `Ana de Jesús`. Surnames still rely on the dictionary.
 
 ## 0.1.1
 
