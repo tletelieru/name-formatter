@@ -1,5 +1,11 @@
 # @tletelieru/name-formatter
 
+## 0.1.2
+
+### Patch Changes
+
+- Add the Catalan conjunction `i` as a particle, so `Puig i Cadafalch` stays one surname and `i` stays lowercase in `capitalizeName`.
+
 ## 0.1.1
 
 ### Patch Changes

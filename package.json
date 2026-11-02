@@ -1,6 +1,6 @@
 {
   "name": "@tletelieru/name-formatter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Format and split person names, with first-class support for Spanish and Portuguese conventions.",
   "license": "MIT",
   "author": "tletelieru",

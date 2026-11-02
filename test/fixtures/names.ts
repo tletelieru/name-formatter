@@ -57,6 +57,8 @@ export const defaultSplitFixtures: SplitFixture[] = [
   fixture('Pedro Soto Pérez - Cotapos', 'Pedro', '', 'Soto', 'Pérez-Cotapos'),
   fixture("Bernardo O'Higgins Riquelme", 'Bernardo', '', "O'Higgins", 'Riquelme'),
   fixture('José Ortega y Gasset', 'José', '', 'Ortega y Gasset', ''),
+  fixture('Josep Puig i Cadafalch', 'Josep', '', 'Puig i Cadafalch', ''),
+  fixture('Anna Puig i Cadafalch Soler', 'Anna', '', 'Puig i Cadafalch', 'Soler'),
   fixture('João da Silva Santos', 'João', '', 'da Silva', 'Santos'),
   fixture('Maria das Dores Ferreira dos Santos', 'Maria', 'das Dores', 'Ferreira', 'dos Santos'),
   fixture('Ludwig van der Rohe Mies', 'Ludwig', '', 'van der Rohe', 'Mies'),
@@ -73,6 +75,7 @@ export const capitalizeNameFixtures: [string, string][] = [
   ['ewan macgregor', 'Ewan MacGregor'],
   ['maría macías machado', 'María Macías Machado'],
   ['JOSÉ ORTEGA Y GASSET', 'José Ortega y Gasset'],
+  ['JOSEP PUIG I CADAFALCH', 'Josep Puig i Cadafalch'],
   ['joão dos santos', 'João dos Santos'],
   ['juan de', 'Juan De'],
 ];
