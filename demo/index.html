@@ -3,28 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Playground for @tletelieru/name-formatter: format, split and normalize person names."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>name-formatter</title>
-    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <main>
-      <h1>name-formatter</h1>
-      <p>Format, normalize and split person names. Everything runs in your browser.</p>
-      <label for="name">Name</label>
-      <input id="name" value="MARÍA DE LOS ÁNGELES MATUS DE LA PARRA SEVILLA" autocomplete="off" />
-      <label for="strategy">Split strategy</label>
-      <select id="strategy">
-        <option value="dictionary">dictionary</option>
-        <option value="particle">particle</option>
-        <option value="lastTwo">lastTwo</option>
-      </select>
-      <h2>Format</h2>
-      <table id="formats"></table>
-      <h2>Normalize</h2>
-      <table id="normalized"></table>
-      <h2>Split</h2>
-      <table id="split"></table>
-    </main>
-    <script type="module" src="./main.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
   </body>
 </html>
