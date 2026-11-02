@@ -122,5 +122,9 @@ describe('splitGivenNames', () => {
       middleName: 'Isabel',
     });
     expect(splitGivenNames('Juan Pablo')).toEqual({ firstName: 'Juan', middleName: 'Pablo' });
+    expect(splitGivenNames('María José Ignacia')).toEqual({
+      firstName: 'María José',
+      middleName: 'Ignacia',
+    });
   });
 });

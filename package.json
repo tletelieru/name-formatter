@@ -1,6 +1,6 @@
 {
   "name": "@tletelieru/name-formatter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Format and split person names, with first-class support for Spanish and Portuguese conventions.",
   "license": "MIT",
   "author": "tletelieru",
@@ -56,6 +56,11 @@
     "release": "npm run build && changeset publish",
     "prepare": "husky"
   },
+  "overrides": {
+    "eslint-plugin-react": {
+      "eslint": "$eslint"
+    }
+  },
   "lint-staged": {
     "*.{js,mjs,cjs,ts,tsx}": [
       "node node_modules/eslint/bin/eslint.js --fix",
@@ -65,13 +70,23 @@
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@eslint/js": "^10.0.1",
+    "@mui/material": "^9.5.0",
     "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
     "eslint": "^10.14.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "tsup": "^9.0.0",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.72.1",

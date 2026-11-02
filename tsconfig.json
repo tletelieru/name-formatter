@@ -10,7 +10,8 @@
     "noImplicitOverride": true,
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
   "include": ["src", "test", "demo", "*.ts"],
   "exclude": ["dist", "coverage", "node_modules"]
