@@ -87,6 +87,12 @@ describe('normalizeName', () => {
     );
   });
 
+  it('undefined options keep the preset rule', () => {
+    expect(
+      normalizeName('Muñoz', { preset: 'ascii', enye: undefined, stripAccents: undefined }),
+    ).toBe('Munoz');
+  });
+
   it('options override the preset', () => {
     expect(normalizeName('Muñoz', { preset: 'ascii', enye: 'ni' })).toBe('Munioz');
   });

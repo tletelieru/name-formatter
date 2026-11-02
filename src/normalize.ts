@@ -51,7 +51,10 @@ const BUILT_IN_RULES: Record<string, string> = { remove: '', space: ' ' };
 
 function resolveOptions(options: NormalizeOptions): NormalizeOptions {
   const preset = options.preset ? PRESETS[options.preset] : {};
-  return { ...preset, ...options, replace: { ...preset.replace, ...options.replace } };
+  const defined = Object.fromEntries(
+    Object.entries(options).filter(([, value]) => value !== undefined),
+  );
+  return { ...preset, ...defined, replace: { ...preset.replace, ...options.replace } };
 }
 
 function applyReplacements(value: string, replace: Record<string, string>): string {
