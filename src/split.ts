@@ -1,6 +1,6 @@
 import { COMPOUND_GIVEN_NAMES, COMPOUND_SURNAMES } from './dictionary';
 import { normalizeName } from './normalize';
-import { DEFAULT_PARTICLES } from './particles';
+import { DEFAULT_PARTICLES, isParticle } from './particles';
 import { toWords } from './text';
 import {
   dictionaryUnits,
@@ -55,13 +55,31 @@ function buildUnits(words: string[], options: SplitOptions): Unit[] {
   return dictionaryUnits(words, particles, dictionary);
 }
 
-function firstAndRest(words: string[], options: SplitOptions, dictionary: string[][]): Unit[] {
+function attachParticleUnits(units: Unit[], particles: readonly string[]): Unit[] {
+  return units.reduce<Unit[]>((result, unit) => {
+    const previous = result.at(-1);
+    if (previous && isParticle(unit[0] ?? '', particles)) {
+      previous.push(...unit);
+    } else {
+      result.push([...unit]);
+    }
+    return result;
+  }, []);
+}
+
+function firstAndRest(
+  words: string[],
+  options: SplitOptions,
+  dictionary: string[][],
+  givenNames: boolean,
+): Unit[] {
   const particles = options.particles ?? DEFAULT_PARTICLES;
   if (options.strategy === 'particle') {
     const length = takeParticleUnit(words, particles);
     return [words.slice(0, length), words.slice(length)];
   }
-  const [first = [], ...rest] = dictionaryUnits(words, particles, dictionary);
+  const units = dictionaryUnits(words, particles, dictionary);
+  const [first = [], ...rest] = givenNames ? attachParticleUnits(units, particles) : units;
   return [first, rest.flat()];
 }
 
@@ -70,19 +88,15 @@ export function splitGivenNames(givenNames: string, options: SplitOptions = {}):
     ...COMPOUND_GIVEN_NAMES,
     ...(options.compoundGivenNames ?? []),
   ]);
-  const [first, rest] = firstAndRest(prepareWords(givenNames, options), options, dictionary) as [
-    Unit,
-    Unit,
-  ];
+  const words = prepareWords(givenNames, options);
+  const [first, rest] = firstAndRest(words, options, dictionary, true) as [Unit, Unit];
   return { firstName: first.join(' '), middleName: rest.join(' ') };
 }
 
 export function splitSurnames(surnames: string, options: SplitOptions = {}): SurnameParts {
   const dictionary = prepareDictionary([...COMPOUND_SURNAMES, ...(options.compoundSurnames ?? [])]);
-  const [first, rest] = firstAndRest(prepareWords(surnames, options), options, dictionary) as [
-    Unit,
-    Unit,
-  ];
+  const words = prepareWords(surnames, options);
+  const [first, rest] = firstAndRest(words, options, dictionary, false) as [Unit, Unit];
   return { firstSurname: first.join(' '), secondSurname: rest.join(' ') };
 }
 
@@ -106,11 +120,15 @@ export function splitName(name: string | SeparatedName, options: SplitOptions = 
   const units = buildUnits(prepareWords(name, options), options);
   const count = Math.min(resolveSurnameCount(units.length, options), units.length);
   const boundary = units.length - count;
-  const [firstGiven = [], ...otherGiven] = units.slice(0, boundary);
+  const givenUnits = attachParticleUnits(
+    units.slice(0, boundary),
+    options.particles ?? DEFAULT_PARTICLES,
+  );
+  const [firstGiven = [], ...otherGiven] = givenUnits;
   const [firstSurname = [], ...otherSurnames] = units.slice(boundary);
 
   return {
-    givenNames: join(units.slice(0, boundary)),
+    givenNames: join(givenUnits),
     surnames: join(units.slice(boundary)),
     firstName: firstGiven.join(' '),
     middleName: join(otherGiven),
