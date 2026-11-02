@@ -6,6 +6,7 @@ export const DEFAULT_PARTICLES: readonly string[] = [
   'los',
   'y',
   'e',
+  'i',
   'da',
   'das',
   'do',
@@ -18,7 +19,7 @@ export const DEFAULT_PARTICLES: readonly string[] = [
   'le',
 ];
 
-const CONJUNCTIONS: readonly string[] = ['y', 'e'];
+const CONJUNCTIONS: readonly string[] = ['y', 'e', 'i'];
 
 export function isParticle(
   word: string,

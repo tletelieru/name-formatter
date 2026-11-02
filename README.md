@@ -71,8 +71,10 @@ ambiguity. `splitGivenNames` and `splitSurnames` work on one side only.
 Hyphenated words are always one unit. `convention: 'single'` expects one surname. Extend the
 dictionary with `compoundGivenNames` and `compoundSurnames`.
 
-Names are ambiguous, so the default is a best guess. `Pedro Soto de la Vega` gives surnames `Soto`
-and `de la Vega` unless `Soto de la Vega` is in the dictionary.
+In given names, a particle and its word always join the previous name, so `Ana de Jesús` is one name
+without a dictionary entry. Surnames are more ambiguous, so the default is a best guess there:
+`Pedro Soto de la Vega` gives surnames `Soto` and `de la Vega` unless `Soto de la Vega` is in the
+dictionary.
 
 ## License
 
